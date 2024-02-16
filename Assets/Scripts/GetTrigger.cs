@@ -1,17 +1,20 @@
-using System;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class GetTrigger : MonoBehaviour {
-    [SerializeField] private int score;
-    
+    [SerializeField] private GameObject ball;
+
+    private int _counter;
+
     private void Start() {
-        score = 0;
+        _counter = 0;
     }
 
     private void OnTriggerEnter(Collider other) {
-        Debug.Log($"Triggered by {other.gameObject.name}");
-        score++;
-        Debug.Log(score);
+        if (other.gameObject.name == "PlayerArmature") {
+            Destroy(ball);
+        }
+
+        _counter++;
+        Debug.Log($"Player has walked through {_counter} times.");
     }
 }
